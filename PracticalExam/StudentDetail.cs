@@ -8,10 +8,9 @@ namespace PracticalExam
 {
     class StudentDetail
     {
-        string Grade;
-        public int Id { get; set; }
-        public string StudentName { get; set; }
-        
+        private string _grade;
+        private int _id;
+        private string _studentName;
         private double _maths;
         public double Maths
         {
@@ -24,8 +23,7 @@ namespace PracticalExam
                 }
                 else
                 {
-                    throw new InvalidMarksException("invalidmarksexception");
-                    
+                    throw new InvalidMarksException("Invalid marks exception Maths");
                 }
             }
         }
@@ -36,51 +34,46 @@ namespace PracticalExam
             get { return _science; }
             set
             {
-                if (value <= 50 && value >= 0)
+                if (value >= 0 && value <= 50)
                 {
                     _science = value;
                 }
                 else
                 {
-                    throw new InvalidMarksException(" invalidmarksexception");
+                    throw new InvalidMarksException("Invalid marks exception Science");
                 }
             }
         }
 
-        public double Total { get; set; }
+        private double _total;
 
-        public StudentDetail(int i, string n, double m, double s)
+        public StudentDetail(int id, string name, double mathsMark, double scienceMark)
         {
-            Id = i;
-            StudentName = n;
-            Maths = m;
-            Science = s;
-            Total = m + s;
+            _id = id;
+            _studentName = name;
+            Maths = mathsMark;
+            Science = scienceMark;
+            _total = mathsMark + scienceMark;
 
-            if (Total > 95 && Total <= 100)
+            if (_total > 95)
             {
-                Grade = "Grade A...";
-
+                _grade = "Grade A...";
             }
-            else if (Total >= 85 && Total <= 95)
+            else if (_total >= 85 && _total <= 95)
             {
-                Grade = "Grade B...";
-
+                _grade = "Grade B...";
             }
             else
             {
-                Grade = "Grade C...";
-
+                _grade = "Grade C...";
             }
-
         }
 
         public static void DisplayStudentDetail(List<StudentDetail> list)
         {
             foreach (var student in list)
             {
-                Console.WriteLine("\n" + student.StudentName + " : Totla Marks = " + student.Total + " Grade = " + student.Grade);
-
+                Console.WriteLine("\n" + student._studentName + " : Totla Marks = " + student._total + " Grade = " + student._grade);
             }
         }
     }
