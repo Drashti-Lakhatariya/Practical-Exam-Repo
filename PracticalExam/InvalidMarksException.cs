@@ -10,7 +10,6 @@ namespace PracticalExam
     {
         public InvalidMarksException(string message) : base(message)
         {
-         //   Console.WriteLine("invalidmarksexception");
         }
     }
 }
